@@ -6,9 +6,9 @@ define_grid(columns: 5, rows: 8, gutter: 10)
 # HEADER
 repeat(:all) do
   im = Rails.application.assets.find_asset(Spree::PrintInvoice::Config[:logo_path])
-  if File.exist? im.pathname
-    image im, vposition: :top, height: 40, scale: Spree::PrintInvoice::Config[:logo_scale]
-  end
+ # if File.exist? im
+  #  image im, vposition: :top, height: 40, scale: Spree::PrintInvoice::Config[:logo_scale]
+  #end
 
   grid([0,3], [0,4]).bounding_box do
     font @font_face, size: @font_size
@@ -49,14 +49,14 @@ grid([1,0], [6,4]).bounding_box do
     billing << "\n#{bill_address.address1}"
     billing << "\n#{bill_address.address2}" unless bill_address.address2.blank?
     billing << "\n#{bill_address.city}, #{bill_address.state_text} #{bill_address.zipcode}"
-    billing << "\n#{bill_address.country.name}"
+    billing << "\n#{bill_address.country}"
     billing << "\n#{bill_address.phone}"
 
     shipping =  "#{ship_address.firstname} #{ship_address.lastname}"
     shipping << "\n#{ship_address.address1}"
     shipping << "\n#{ship_address.address2}" unless ship_address.address2.blank?
     shipping << "\n#{ship_address.city}, #{ship_address.state_text} #{ship_address.zipcode}"
-    shipping << "\n#{ship_address.country.name}"
+    shipping << "\n#{ship_address.country}"
     shipping << "\n#{ship_address.phone}"
     shipping << "\n\n#{Spree.t(:via, scope: :print_invoice)} #{@order.shipments.first.shipping_method.name}"
 
