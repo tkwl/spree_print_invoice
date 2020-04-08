@@ -21,9 +21,11 @@ Gem::Specification.new do |s|
   s.test_files   = `git ls-files -- spec/*`.split("\n")
   s.require_path = 'lib'
   s.requirements << 'none'
-
+  
+  spree_version = '>= 3.1.0', '< 5.0'
+ 
   s.add_runtime_dependency 'prawn', '~> 1.0.0'
-  s.add_runtime_dependency 'spree_core', '~> 3.0.0.beta'
+  s.add_runtime_dependency 'spree_core', spree_version
 
   s.add_development_dependency 'capybara', '~> 2.4.4'
   s.add_development_dependency 'selenium-webdriver', '>= 2.41'
